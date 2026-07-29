@@ -115,7 +115,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenResume }) => {
                   <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl blur opacity-40 group-hover:opacity-100 transition duration-300"></div>
                   <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-xl overflow-hidden border-2 border-emerald-500 bg-black/60 flex-shrink-0 shadow-[0_0_25px_rgba(16,185,129,0.3)]">
                     <img
-                      src="https://github.com/AjiteshSinha17.png"
+                      src="/profile.jpg"
                       alt="Ajitesh Sinha"
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />

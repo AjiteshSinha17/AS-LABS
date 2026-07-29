@@ -33,9 +33,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
     { id: 'experience', label: 'Experience', num: '03' },
     { id: 'research', label: 'Research', num: '04' },
     { id: 'skills', label: 'Skills', num: '05' },
-    { id: 'github', label: 'Telemetry', num: '06' },
-    { id: 'services', label: 'Services', num: '07' },
-    { id: 'contact', label: 'Contact', num: '08' },
+    { id: 'services', label: 'Services', num: '06' },
+    { id: 'contact', label: 'Contact', num: '07' },
   ];
 
   const scrollToSection = (id: string) => {
@@ -51,12 +50,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#03090b]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] py-3'
-          : 'bg-[#03090b]/50 backdrop-blur-md border-b border-white/10 py-4'
+          ? 'bg-[#03090b]/85 backdrop-blur-2xl border-b border-emerald-500/20 shadow-[0_10px_35px_rgba(0,0,0,0.7)] py-2.5'
+          : 'bg-[#03090b]/60 backdrop-blur-xl border-b border-white/10 py-3.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand Identity */}
+        {/* Brand Identity with User Photo */}
         <div className="flex items-center gap-3">
           <a
             href="#hero"
@@ -66,14 +65,21 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
             }}
             className="flex items-center gap-3 group"
           >
-            <div className="w-9 h-9 bg-emerald-500 rounded-full flex items-center justify-center font-bold text-black text-base italic shadow-[0_0_15px_rgba(16,185,129,0.4)] group-hover:scale-105 transition-transform">
-              AS
+            <div className="relative flex-shrink-0">
+              <div className="w-10 h-10 rounded-full p-[2px] bg-gradient-to-tr from-emerald-500 via-teal-400 to-emerald-300 shadow-[0_0_18px_rgba(16,185,129,0.5)] group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(16,185,129,0.8)] transition-all duration-300">
+                <img
+                  src="/profile.jpg"
+                  alt="Ajitesh Sinha"
+                  className="w-full h-full rounded-full object-cover object-top border border-black/80"
+                />
+              </div>
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-[#03090b] shadow-[0_0_8px_rgba(16,185,129,1)] animate-pulse" />
             </div>
             <div>
-              <h1 className="text-lg font-bold tracking-tight uppercase leading-none text-white group-hover:text-emerald-400 transition-colors">
-                Ajitesh Sinha
+              <h1 className="text-base sm:text-lg font-extrabold tracking-tight uppercase leading-tight text-white group-hover:text-emerald-400 transition-colors flex items-center gap-2">
+                <span>Ajitesh Sinha</span>
               </h1>
-              <p className="text-[10px] text-emerald-500 font-mono tracking-[0.2em] uppercase mt-0.5">
+              <p className="text-[10px] text-emerald-400 font-mono tracking-widest uppercase mt-0.5 opacity-90">
                 Flutter Developer & AI Engineer
               </p>
             </div>
@@ -81,50 +87,52 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
         </div>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden xl:flex items-center gap-6 font-mono text-[11px] uppercase tracking-wider text-white/50">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 font-mono text-[11px] uppercase tracking-wider">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`transition-all duration-200 hover:text-white flex items-center gap-1.5 py-1 ${
-                  isActive ? 'text-white font-bold border-b-2 border-emerald-500' : 'hover:border-b border-emerald-500/40'
+                className={`transition-all duration-200 flex items-center gap-1.5 px-3 py-1.5 rounded-full ${
+                  isActive
+                    ? 'bg-emerald-500/15 text-emerald-400 font-bold border border-emerald-500/40 shadow-[0_0_12px_rgba(16,185,129,0.25)]'
+                    : 'text-white/60 hover:text-white hover:bg-white/5 border border-transparent'
                 }`}
               >
-                <span className="text-emerald-500/70 text-[10px]">{link.num}.</span>
+                <span className={`text-[10px] ${isActive ? 'text-emerald-400' : 'text-emerald-500/60'}`}>{link.num}.</span>
                 <span>{link.label}</span>
               </button>
             );
           })}
         </nav>
 
-        {/* Actions & Terminal Button */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* Actions & Buttons */}
+        <div className="hidden lg:flex items-center gap-2.5">
           {/* Audio toggle */}
           <button
             onClick={toggleSound}
-            title={soundEnabled ? 'Mute Interface Audio' : 'Enable Interface Audio'}
-            className="p-2 text-emerald-400 hover:bg-emerald-500/10 border border-white/10 rounded transition-all"
+            title={soundEnabled ? 'Mute Audio' : 'Enable Audio'}
+            className="p-2 text-emerald-400 hover:text-white bg-white/5 hover:bg-emerald-500/20 border border-white/10 hover:border-emerald-500/40 rounded-lg transition-all"
           >
             {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4 opacity-40" />}
           </button>
 
-          {/* Signal Indicator */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-mono text-emerald-400">
+          {/* Coordinates Indicator */}
+          <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-[10px] font-mono text-emerald-400">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>28.6139°N</span>
           </div>
 
-          {/* Resume Modal Trigger */}
+          {/* Resume Trigger */}
           <button
             onClick={() => {
               soundFx.playClick();
               onOpenResume();
             }}
-            className="px-3 py-1.5 bg-white/5 border border-white/20 text-white font-mono text-xs uppercase tracking-wider hover:border-emerald-500 hover:text-emerald-400 transition-all flex items-center gap-1.5 rounded-sm"
+            className="px-3.5 py-1.5 bg-white/5 border border-white/15 hover:border-emerald-500/60 text-white hover:text-emerald-400 font-mono text-xs uppercase tracking-wider rounded-lg transition-all flex items-center gap-1.5 shadow-sm hover:shadow-[0_0_15px_rgba(16,185,129,0.2)]"
           >
-            <FileText className="w-3.5 h-3.5 text-emerald-500" />
+            <FileText className="w-3.5 h-3.5 text-emerald-400" />
             <span>RESUME</span>
           </button>
 
@@ -134,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
               soundFx.playTerminalBeep();
               onOpenTerminal();
             }}
-            className="px-4 py-1.5 bg-emerald-500/10 border border-emerald-500 text-emerald-400 font-mono text-xs font-bold uppercase tracking-widest hover:bg-emerald-500 hover:text-black transition-all active:scale-95 flex items-center gap-2 rounded-sm shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+            className="px-4 py-1.5 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-black font-mono text-xs font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 flex items-center gap-2 rounded-lg shadow-[0_0_20px_rgba(16,185,129,0.35)]"
           >
             <Terminal className="w-4 h-4" />
             <span>TERMINAL</span>
@@ -148,14 +156,14 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
               soundFx.playTerminalBeep();
               onOpenTerminal();
             }}
-            className="p-2 bg-emerald-500/10 border border-emerald-500 text-emerald-400 text-xs font-mono font-bold rounded"
+            className="p-2 bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 text-xs font-mono font-bold rounded-lg"
             title="Open CLI Terminal"
           >
             <Terminal className="w-4 h-4" />
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-white hover:bg-white/10 border border-white/10 rounded"
+            className="p-2 text-white hover:bg-white/10 border border-white/10 rounded-lg"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -164,18 +172,25 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a0a0a] border-b border-white/10 px-6 py-6 space-y-4 animate-in slide-in-from-top duration-200">
+        <div className="lg:hidden bg-[#03090b]/95 backdrop-blur-2xl border-b border-emerald-500/20 px-6 py-6 space-y-4 animate-in slide-in-from-top duration-200">
           <div className="grid grid-cols-2 gap-2 pb-4 border-b border-white/10">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className="text-left font-mono text-xs py-2 px-3 bg-white/5 border border-white/10 text-white hover:border-emerald-500 uppercase flex items-center gap-2"
-              >
-                <span className="text-emerald-500">{link.num}.</span>
-                <span>{link.label}</span>
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`text-left font-mono text-xs py-2.5 px-3.5 rounded-lg border uppercase flex items-center gap-2 transition-all ${
+                    isActive
+                      ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-bold'
+                      : 'bg-white/5 border-white/10 text-white/80 hover:border-emerald-500/40'
+                  }`}
+                >
+                  <span className="text-emerald-500">{link.num}.</span>
+                  <span>{link.label}</span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex items-center justify-between pt-2">
@@ -184,7 +199,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
                 setMobileMenuOpen(false);
                 onOpenResume();
               }}
-              className="px-4 py-2 bg-white/5 border border-white/20 text-white text-xs font-mono uppercase flex items-center gap-2"
+              className="px-4 py-2 bg-white/5 border border-white/20 text-white text-xs font-mono uppercase rounded-lg flex items-center gap-2"
             >
               <FileText className="w-4 h-4 text-emerald-500" />
               <span>VIEW RESUME</span>
@@ -195,7 +210,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenTerminal, onOpenResume, ac
                 setMobileMenuOpen(false);
                 onOpenTerminal();
               }}
-              className="px-4 py-2 bg-emerald-500 text-black text-xs font-mono font-bold uppercase flex items-center gap-2"
+              className="px-4 py-2 bg-emerald-500 text-black text-xs font-mono font-bold uppercase rounded-lg flex items-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.4)]"
             >
               <Terminal className="w-4 h-4" />
               <span>CLI TERMINAL</span>

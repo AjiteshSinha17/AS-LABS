@@ -25,7 +25,7 @@ export function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'projects', 'dossier', 'experience', 'research', 'skills', 'github', 'services', 'contact'];
+      const sections = ['hero', 'projects', 'dossier', 'experience', 'research', 'skills', 'services', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {

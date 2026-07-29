@@ -28,7 +28,7 @@ export const GitHubHub: React.FC = () => {
       }
     } catch (err: any) {
       console.error("Error loading GitHub data:", err);
-      setError("Unable to sync live GitHub telemetry. Displaying cached repository data.");
+      setError("Unable to sync live GitHub activity. Displaying cached repository data.");
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,7 @@ export const GitHubHub: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 backdrop-blur-md border border-white/10 rounded text-[10px] font-mono text-emerald-500 mb-3 uppercase tracking-widest shadow-md">
               <Github className="w-3.5 h-3.5" />
-              <span>Live Telemetry // GitHub Hub</span>
+              <span>GitHub Projects Hub</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white uppercase tracking-tight">
               GITHUB <span className="text-emerald-500">DEVELOPER ACTIVITY</span>
